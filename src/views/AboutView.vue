@@ -13,8 +13,8 @@ let images = ref([]);
 </script>
 <template>
   <div class="about m-8">
-    <img :src="images[$route.params.id].url" style="width: 200px; border-radius: 6px;"/>
-    <h1 class="text-xl mt-4">Image Name:{{ images[$route.params.id].title }}</h1>
+    <img :src="images[$route.params.id - 1].url" style="width: 200px; border-radius: 6px;"/>
+    <h1 class="text-xl mt-4">Image Name:{{ images[$route.params.id - 1].title }}</h1>
 </div>
 </template>
 
