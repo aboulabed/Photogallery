@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #eff0f4;
+    
+    
+  }
+  
+  
+  nav .search-container {
+    
+    background-color: #f1f4f9;
+    
+  }
+  
+  nav input[type="text"] {
+    background-color: #f1f4f9;
+    
+    width: 300px; /* Adjust width as needed */
+    
+  }
+
+  nav input[type="text"]::placeholder {
+    color: #ccc; /* Placeholder color */
+  }
+  nav input[type="text"]:focus-visible {
+    outline:none
+  }
+  nav i {
+    
+    color:#979faa ;   right: 5px;
+  }
+  
+  
