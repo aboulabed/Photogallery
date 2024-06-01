@@ -6,44 +6,47 @@
 
         <router-link clas="text-2xl" to="../">Continue shopping</router-link>
       </div>
-      <div class="head flex pt-3 pb-2">
+      <div class="head flex pt-3 pb-2 max-sm:justify-between">
         <h2 class="w-[70%]">PRODUCT</h2>
-        <h2 class="w-[20%]">QUANTITY</h2>
+        <h2 class="w-[20%] max-sm:hidden">QUANTITY</h2>
         <h2 class="w-[10%] text-right">TOTAL</h2>
       </div>
-      <div class="product-details pb-20 flex mt-5">
-        <div class="product w-[70%] flex">
-          <div class="image w-24 rounded-sm overflow-hidden">
-            <img class="product-img" :src="images[imageId - 1].url" alt="" />
+      <div class="product-details max-sm:justify-between pb-20 flex mt-5">
+        <div class="small w-[90%] flex max-sm:flex-col">
+
+          <div class="product mb-4 max-sm:w-[80%] w-[70%] flex">
+            <div class="image w-24 rounded-sm overflow-hidden">
+              <img class="product-img" :src="images[imageId - 1].url" alt="" />
+            </div>
+            <div class="product-title ml-6 text-xl">
+              <h2>{{ images[imageId - 1].title }}</h2>
+            </div>
           </div>
-          <div class="product-title ml-6 text-xl">
-            <h2>{{ images[imageId - 1].title }}</h2>
-          </div>
-        </div>
-        <div class="product-quantity w-[20%] h-[50px]">
-          <div class="input w-[140px] h-[100%] flex bg-white">
-            <button
-              class="w-[45px]"
-              @click="
-                subtract($event.target.nextSibling, images[imageId - 1].id)
-              "
-            >
-              -
-            </button>
-            <input
-              type="text"
-              class="cursor-text bg-white text-center w-[50px]"
-              disabled
-              value="1"
-            />
-            <button
-              class="w-[45px]"
-              @click="
-                add($event.target.previousSibling, images[imageId - 1].id)
-              "
-            >
-              +
-            </button>
+          <div class="product-quantity max-sm:ml-24 w-[20%] h-[50px]">
+            <div class="input w-[140px] h-[100%] flex bg-white">
+              <button
+                class="w-[45px]"
+                @click="
+                  subtract($event.target.nextSibling, images[imageId - 1].id)
+                "
+              >
+                -
+              </button>
+              <input
+                type="text"
+                class="cursor-text bg-white text-center w-[50px]"
+                disabled
+                value="1"
+              />
+              <button
+                class="w-[45px]"
+                @click="
+                  add($event.target.previousSibling, images[imageId - 1].id)
+                "
+              >
+                +
+              </button>
+            </div>
           </div>
         </div>
         <div class="total-price w-[10%] text-end text-xl">

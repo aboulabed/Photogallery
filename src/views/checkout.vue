@@ -22,10 +22,14 @@
         </button></router-link
       >
     </div>
-    <div class="container flex justify-between">
-      <div class="left mt-8 w-[600px]">
+    <div
+      class="container max-sm:flex-col-reverse max-lg:flex-col-reverse flex justify-between"
+    >
+      <div class="left mt-8 w-[600px] max-lg:w-full max-sm:mt-20 max-lg:mt-20">
         <div class="delivery">
-          <div class="head text-2xl font-bold"><h2>Delivery</h2></div>
+          <div class="head text-2xl font-bold max-sm:text-center">
+            <h2>Delivery</h2>
+          </div>
           <div class="select mt-4">
             <div class="selector cursor-pointer flex px-3 py-4 bg-white">
               <div class="input flex items-center">
@@ -41,9 +45,7 @@
                 <label class="cursor-pointer" for="ship"><p>Ship</p></label>
               </div>
             </div>
-            <div
-              class="selector cursor-pointer flex px-3 py-4 w-[600px] bg-white"
-            >
+            <div class="selector cursor-pointer flex px-3 py-4 bg-white">
               <div class="input flex items-center">
                 <input
                   type="radio"
@@ -68,7 +70,7 @@
           />
           <input
             type="text"
-            class="l-name w-[295px] ml-[5px] py-3 px-2 focus:outline-none rounded-md"
+            class="l-name w-[295px] max-lg:w-[calc(100% / 2 - 5px)] ml-[5px] py-3 px-2 focus:outline-none rounded-md"
             placeholder="Last Name"
           />
         </div>
@@ -92,9 +94,9 @@
           />
         </div>
         <div class="Payment mt-8">
-          <h2 class="text-2xl font-bold">Payment</h2>
+          <h2 class="text-2xl font-bold max-sm:text-center">Payment</h2>
           <div class="card-number mt-4">
-            <h4 class="text-lg mb-2">Card Number</h4>
+            <h4 class="text-lg mb-2 max-sm:text-center">Card Number</h4>
             <input
               type="number"
               class="w-full py-3 px-2 focus:outline-none rounded-md"
@@ -103,18 +105,20 @@
           </div>
           <div class="card-details flex mt-4">
             <div class="expiration">
-              <h4 class="text-lg mb-2">Expiration</h4>
+              <h4 class="text-lg mb-2 max-sm:text-center">Expiration</h4>
               <input
                 type="text"
-                class="f-name w-[295px] mr-[5px] py-3 px-2 focus:outline-none rounded-md"
+                class="exp w-[295px] mr-[5px] py-3 px-2 focus:outline-none rounded-md"
                 placeholder="MM / YY"
               />
             </div>
             <div class="security-num">
-              <h4 class="text-lg mb-2">Card Security Number</h4>
+              <h4 class="text-lg mb-2 max-sm:text-center">
+                Card Security Number
+              </h4>
               <input
                 type="text"
-                class="l-name w-[295px] ml-[5px] py-3 px-2 focus:outline-none rounded-md"
+                class="csn w-[295px] ml-[5px] py-3 px-2 focus:outline-none rounded-md"
                 placeholder="CSC"
               />
             </div>
@@ -129,8 +133,10 @@
           </button>
         </div>
       </div>
-      <div class="rigit mt-8 w-1/3">
-        <div class="product-details flex items-center">
+      <div class="rigit mt-8 w-1/3 max-sm:w-full max-lg:w-full">
+        <div
+          class="product-details max-sm:justify-center max-lg:justify-center flex items-center"
+        >
           <img
             class="w-[64px] rounded-md"
             :src="images[imageId - 1].url"
@@ -188,19 +194,19 @@ fetch(`https://jsonplaceholder.typicode.com/photos`)
 function disscount(input, imagePrice) {
   let price = document.querySelector(".product-details .price ");
   if (input.value !== "" || typeof input.value === typeof Number) {
-    price.innerHTML = (imagePrice * 5) / 2;
+    price.innerHTML = `${(imagePrice * 5) / 2}$`;
     input.value = "";
   } else {
     input.value = "Invalid Code";
   }
 }
 function payNow() {
-  let overlay = document.querySelector(".overlay")
-  let payWindow = document.querySelector(".paysuccesful")
-  overlay.classList.remove("hidden")
-  overlay.classList.add("fixed")
-  payWindow.classList.remove("hidden")
-  payWindow.classList.add("block")
+  let overlay = document.querySelector(".overlay");
+  let payWindow = document.querySelector(".paysuccesful");
+  overlay.classList.remove("hidden");
+  overlay.classList.add("fixed");
+  payWindow.classList.remove("hidden");
+  payWindow.classList.add("block");
 }
 </script>
 
@@ -236,5 +242,13 @@ function payNow() {
   height: 250px;
   justify-self: center;
   align-self: center;
+}
+@media not all and (min-width: 1024px) {
+  .f-name,.l-name {
+    width: calc(50% - 5px);
+  }
+  .exp, .csn {
+    width:379px
+  }
 }
 </style>

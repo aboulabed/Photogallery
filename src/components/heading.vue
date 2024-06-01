@@ -24,12 +24,12 @@ function addCategory() {
 <template>
   <div class="heading flex items-center mt-14 flex-col">
     <h1 class="text-4xl font-bold mb-2">Photo Gallery</h1>
-    <p class="">
+    <p class="text-center">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dolorum at
       reiciendis earum.
     </p>
   </div>
-  <div class="choose items-center flex justify-center mt-10 mb-5">
+  <div class="choose items-center flex-wrap flex justify-center mt-10 mb-5">
     <button
       @click="switchFunc('All')"
       class="pt-1 pb-1 pl-4 pr-4 rounded-2xl mx-1"
@@ -40,7 +40,7 @@ function addCategory() {
     <button
       v-for="content in filtredAlbums"
       @click="switchFunc(content.id)"
-      class="pt-1 pb-1 pl-4 pr-4 rounded-2xl mx-1"
+      class="pt-1 pb-1 mt-2 pl-4 pr-4 rounded-2xl mx-1"
       :class="{ active: active === content.id }"
     >
       {{ content.title }}

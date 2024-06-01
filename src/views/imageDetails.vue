@@ -15,19 +15,27 @@ function addToCart(imgId) {
 </script>
 <template>
   <div class="about mt-6 flex justify-center">
-    <div class="container flex">
-      <div class="image w-1/2">
+    <div
+      class="flex max-sm:flex-col max-sm:items-center max-sm:text-center max-lg:flex-col max-lg:items-center max-lg:text-center"
+    >
+      <div
+        class="image w-[45%] max-sm:w-[50%] ml-6 max-lg:w-[50%] max-sm:mb-4 max-lg:mb-6"
+      >
         <img
           :src="images[$route.params.id - 1].url"
-          class="w-11/12 rounded-lg"
+          class="w-11/12 max-sm:w-full max-lg:w-full rounded-lg"
         />
       </div>
-      <div class="description content-between flex flex-wrap max-w-[50%]">
-        <div class="top">
+      <div
+        class="description content-between flex flex-wrap max-w-[50%] max-sm:max-w-[85%] max-lg:max-w-[85%]"
+      >
+        <div class="top max-sm:mb-8 max-lg:mb-8">
           <h1 class="text-3xl">
             {{ images[$route.params.id - 1].title }}
           </h1>
-          <p class="mt-5 text-xl max-w-[90%] leading-[30px]">
+          <p
+            class="mt-5 text-xl max-w-[90%] max-sm:max-w-full max-lg:max-w-full leading-[30px]"
+          >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
             eaque incidunt aliquid fugiat sit illo dicta voluptas tempora,
             voluptates, eveniet consequatur, quibusdam iste vel libero eius?

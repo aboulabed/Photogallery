@@ -4,7 +4,7 @@ export default {
 };
 </script>
 <template>
-  <div class="img-sec relative">
+  <div class="img-sec mb-4 max-sm:w-[95%_!important] max-md:w-[48%_!important] max-md:ml-2 max-lg:w-[30%_!important] max-lg:ml-2 relative">
     <img :src="image.url" alt="img" class="img rounded-md h-full" />
     <router-link :to="'image/' + image.id">
       <button
