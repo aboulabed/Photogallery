@@ -5,9 +5,10 @@ export let images = ref([]);
 export let buttonsContent = ref([]);
 export let categoryNumber = ref(2);
 export let imgNumber = ref(15);
+export let imageId = ref([]);
 export const filtredImg = computed(() => {
   return images.value
-    .filter((img,) => {
+    .filter((img) => {
       return (
         img.title.includes(searchContent.value) &&
         (active.value == img.albumId || active.value == "All")

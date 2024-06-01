@@ -23,7 +23,8 @@ import { searchContent } from "../store";
         alt="Profile Photo"
         style="max-width: 65px"
       />
-      <i class="fa-regular fa-bell mr-1 text-xl"></i>
+      <router-link to="cart/"><i class="fa-solid fa-cart-shopping"></i></router-link>
+      
     </div>
   </nav>
 </template>
