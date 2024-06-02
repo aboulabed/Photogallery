@@ -5,7 +5,7 @@ import {
   buttonsContent,
   categoryNumber,
 } from "../store";
-import { onMounted, computed } from "vue";
+import { onMounted } from "vue";
 onMounted(() => {
   fetch("https://jsonplaceholder.typicode.com/albums")
     .then((response) => response.json())
@@ -14,7 +14,7 @@ onMounted(() => {
     });
 });
 
-function switchFunc(content) {
+function switchFunc(content:string) {
   active.value = content;
 }
 function addCategory() {

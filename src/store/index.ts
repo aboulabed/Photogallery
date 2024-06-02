@@ -1,11 +1,11 @@
-import { computed, ref, onMounted } from "vue";
+import { computed, ref } from "vue";
 export const active = ref("All");
 export const searchContent = ref("");
 export let images = ref([]);
 export let buttonsContent = ref([]);
 export let categoryNumber = ref(2);
 export let imgNumber = ref(15);
-export let imageId = ref([]);
+export let imageId = ref<number>(0);
 export const filtredImg = computed(() => {
   return images.value
     .filter((img) => {

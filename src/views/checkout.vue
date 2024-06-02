@@ -152,13 +152,12 @@
             class="w-[81%] py-4 px-2 rounded-lg"
             type="text"
             placeholder="Add Disscount Code"
+            v-model="inputDisscount"
           />
           <button
             class="w-[15%] ml-4 bg-[#bbb] py-4 px-2 rounded-lg text-white"
             style="font-weight: bold"
-            @click="
-              disscount($event.target.previousSibling, images[imageId - 1].id)
-            "
+            @click="disscount(images[imageId - 1].id)"
           >
             Apply
           </button>
@@ -182,27 +181,44 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { imageId } from "@/store";
 import { ref } from "vue";
-let images = ref([]);
+let inputDisscount = ref();
+let images = ref<
+  [
+    object: {
+      albumId: number;
+      id: number;
+      thumbnailUrl: string;
+      title: string;
+      url: string;
+    }
+  ]
+>([{ albumId: 0, id: 0, thumbnailUrl: "", title: "", url: "" }]);
 fetch(`https://jsonplaceholder.typicode.com/photos`)
   .then((response) => response.json())
   .then((json) => {
     images.value = json;
   });
-function disscount(input, imagePrice) {
-  let price = document.querySelector(".product-details .price ");
-  if (input.value !== "" || typeof input.value === typeof Number) {
+function disscount(imagePrice: number) {
+  let price: HTMLHeadingElement = document.querySelector(
+    ".product-details .price "
+  );
+
+  if (
+    inputDisscount.value !== undefined ||
+    typeof inputDisscount.value === typeof Number
+  ) {
     price.innerHTML = `${(imagePrice * 5) / 2}$`;
-    input.value = "";
+    inputDisscount.value = "";
   } else {
-    input.value = "Invalid Code";
+    inputDisscount.value = "Invalid Code";
   }
 }
 function payNow() {
-  let overlay = document.querySelector(".overlay");
-  let payWindow = document.querySelector(".paysuccesful");
+  let overlay: HTMLDivElement = document.querySelector(".overlay");
+  let payWindow: HTMLDivElement = document.querySelector(".paysuccesful");
   overlay.classList.remove("hidden");
   overlay.classList.add("fixed");
   payWindow.classList.remove("hidden");
@@ -244,11 +260,12 @@ function payNow() {
   align-self: center;
 }
 @media not all and (min-width: 1024px) {
-  .f-name,.l-name {
+  .f-name,
+  .l-name {
     width: calc(50% - 5px);
   }
-  .exp, .csn {
+  /* .exp, .csn {
     width:379px
-  }
+  } */
 }
 </style>

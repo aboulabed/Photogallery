@@ -1,7 +1,17 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import { imageId } from "@/store";
-let images = ref([]);
+let images = ref<
+  [
+    object: {
+      albumId: number;
+      id: number;
+      thumbnailUrl: string;
+      title: string;
+      url: string;
+    }
+  ]
+>([{ albumId: 0, id: 0, thumbnailUrl: "", title: "", url: "" }]);
 
 fetch(`https://jsonplaceholder.typicode.com/photos`)
   .then((response) => response.json())
@@ -9,7 +19,7 @@ fetch(`https://jsonplaceholder.typicode.com/photos`)
     images.value = json;
   });
 
-function addToCart(imgId) {
+function addToCart(imgId: number) {
   imageId.value = imgId;
 }
 </script>
@@ -22,7 +32,7 @@ function addToCart(imgId) {
         class="image w-[45%] max-sm:w-[50%] ml-6 max-lg:w-[50%] max-sm:mb-4 max-lg:mb-6"
       >
         <img
-          :src="images[$route.params.id - 1].url"
+          :src="images[+$route.params.id - 1].url"
           class="w-11/12 max-sm:w-full max-lg:w-full rounded-lg"
         />
       </div>
@@ -31,7 +41,7 @@ function addToCart(imgId) {
       >
         <div class="top max-sm:mb-8 max-lg:mb-8">
           <h1 class="text-3xl">
-            {{ images[$route.params.id - 1].title }}
+            {{ images[+$route.params.id - 1].title }}
           </h1>
           <p
             class="mt-5 text-xl max-w-[90%] max-sm:max-w-full max-lg:max-w-full leading-[30px]"
@@ -48,7 +58,7 @@ function addToCart(imgId) {
           <router-link :to="`../cart`"
             ><button
               class="pt-1 w-[95%] pb-1 pl-4 pr-4 rounded-2xl mx-1 bg-[#fff] text-[#000] hover:bg-[#09ac6d] hover:text-[#fff]"
-              @click="addToCart(images[$route.params.id - 1].id)"
+              @click="addToCart(images[+$route.params.id - 1].id)"
             >
               Add To Cart
             </button>
