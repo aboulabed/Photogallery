@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="total-price w-[10%] text-end text-xl">
+        <div class="total-price w-[10%] text-end text-xl" ref="totalPrice">
           {{ images[imageId - 1].id * 5 }}$
         </div>
       </div>
@@ -52,6 +52,7 @@
 <script setup lang="ts">
 import { imageId } from "@/store";
 import { ref } from "vue";
+let totalPrice = ref(null)
 let inputField = ref(1);
 let images = ref<
   [
@@ -69,20 +70,20 @@ fetch(`https://jsonplaceholder.typicode.com/photos`)
   .then((json) => {
     images.value = json;
   });
+  
 function subtract(id: number) {
-  let quantity: HTMLDivElement = document.querySelector(".total-price");
-  console.log(inputField.value);
 
   if (inputField.value == 1) {
   } else {
     inputField.value--;
-    quantity.innerHTML = `${id * 5 * inputField.value}$ `;
+    totalPrice.value.innerHTML = `${id * 5 * inputField.value}$ `;
+    
   }
 }
 function add(id: number) {
-  let quantity: HTMLDivElement = document.querySelector(".total-price");
   inputField.value++;
-  quantity.innerHTML = `${id * 5 * inputField.value}$ `;
+  totalPrice.value.innerHTML = `${id * 5 * inputField.value}$ `;
+  
 }
 </script>
 

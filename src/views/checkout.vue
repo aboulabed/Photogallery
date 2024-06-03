@@ -3,10 +3,12 @@
     <div
       class="overlay w-full h-full top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.5)] z-[2] hidden"
       style="transition: 0.3s"
+      ref="overlay"
     ></div>
     <div
       style="transition: 0.3s"
       class="paysuccesful text-center absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 bg-white w-[350px] h-[210px] shadow-[21px_21px_15px_-22px_rgba(110,99,110,0.7)] rounded-md hidden"
+      ref="paysuccesful"
     >
       <h2 class="block mt-8 text-xl font-bold">
         Your purchase was completed successfully
@@ -145,7 +147,9 @@
           <h2 class="ml-4 text-xl">
             {{ images[imageId - 1].title.slice(0, 40) }}
           </h2>
-          <h2 class="ml-8 text-xl price">{{ images[imageId - 1].id * 5 }}$</h2>
+          <h2 class="ml-8 text-xl price" ref="price">
+            {{ images[imageId - 1].id * 5 }}$
+          </h2>
         </div>
         <div class="disscount mt-6">
           <input
@@ -184,6 +188,9 @@
 <script setup lang="ts">
 import { imageId } from "@/store";
 import { ref } from "vue";
+let price = ref(null);
+let overlay = ref(null);
+let paysuccesful = ref(null);
 let inputDisscount = ref();
 let images = ref<
   [
@@ -202,27 +209,21 @@ fetch(`https://jsonplaceholder.typicode.com/photos`)
     images.value = json;
   });
 function disscount(imagePrice: number) {
-  let price: HTMLHeadingElement = document.querySelector(
-    ".product-details .price "
-  );
-
   if (
     inputDisscount.value !== undefined ||
     typeof inputDisscount.value === typeof Number
   ) {
-    price.innerHTML = `${(imagePrice * 5) / 2}$`;
+    price.value.innerHTML = `${(imagePrice * 5) / 2}$`;
     inputDisscount.value = "";
   } else {
     inputDisscount.value = "Invalid Code";
   }
 }
 function payNow() {
-  let overlay: HTMLDivElement = document.querySelector(".overlay");
-  let payWindow: HTMLDivElement = document.querySelector(".paysuccesful");
-  overlay.classList.remove("hidden");
-  overlay.classList.add("fixed");
-  payWindow.classList.remove("hidden");
-  payWindow.classList.add("block");
+  overlay.value.classList.remove("hidden");
+  overlay.value.classList.add("fixed");
+  paysuccesful.value.classList.remove("hidden");
+  paysuccesful.value.classList.add("block");
 }
 </script>
 
